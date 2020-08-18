@@ -59,7 +59,7 @@ void mousePressed() {
         return;
       }
     } else {
-      if (movingPiece.canMove(x, y)) {
+      if (movingPiece.canMove(x, y,board)) {
         movingPiece.move(x, y, board);
         movingPiece.movingThisPiece = false;
         whitesMove = !whitesMove;
@@ -69,4 +69,39 @@ void mousePressed() {
     }
     moving = !moving;
   }
+}
+
+void runAi(){
+ int maxDepth = tempMaxDepth; 
+  if (!board.isDead() && !board.hasWon()) {
+    if (blackAI) {
+      if (!whitesMove) {
+        if (moveCounter < 0) {
+          board = maxFunAB(board, -400, 400, 0);
+          // test = maxFun(test, 0);
+          //print(test);
+          whitesMove = true;
+          moveCounter = 10;
+        } else {
+          moveCounter--;
+        }
+      }
+    }
+    if (whiteAI) {
+      if (whitesMove) {
+        if (moveCounter < 0) {
+          board = minFunAB(board, -400, 400, 0);
+          // test = minFun(test, 0);
+
+          //print("test", test);
+
+          whitesMove = false;
+          moveCounter = 10;
+        } else {
+          moveCounter--;
+        }
+      }
+    }
+  }
+
 }

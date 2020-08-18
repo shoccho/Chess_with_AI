@@ -20,6 +20,7 @@ class Piece {
   }
   void show() {
     imageMode(CENTER);
+    if(taken)return;
     if (movingThisPiece) {
       image(pic, mouseX, mouseY, tileSize*1.3, tileSize*1.3);
     } else {
@@ -61,7 +62,7 @@ class Piece {
     }
     return false;
   }
-  boolean canMove(float x, float y) {
+  boolean canMove(float x, float y, Board b) {
     if (!withinBounds(x, y)) {
       return false;
     }
@@ -87,12 +88,13 @@ class Piece {
     while (tempPos.x != x || tempPos.y != y) {
 
       if (board.getPieceAt(tempPos.x, tempPos.y) != null) {
+        System.out.println("returning true");
         return true;
       }
       tempPos.x += stepDirectionX;
       tempPos.y += stepDirectionY;
     }
-
+    System.out.println("returning true");
     return false;
   }
   ArrayList<PVector> generateMoves(Board board) { 
@@ -119,8 +121,7 @@ class King extends Piece {
     clone.taken = taken;
     return clone;
   }
-
-  boolean canMove(float x, float y, Board board) {
+@ Override boolean canMove(float x, float y, Board board) {
     if (!withinBounds(x, y)) {
       return false;
     }

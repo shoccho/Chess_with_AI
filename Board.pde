@@ -16,8 +16,8 @@ class Board {
     whitePieces.add(new Bishop(5, 7, true));
     whitePieces.add(new Knight(1, 7, true));
     whitePieces.add(new Knight(6, 7, true));
-    whitePieces.add(new King(0, 7, true));
-    whitePieces.add(new King(7, 7, true));
+    whitePieces.add(new Rook(0, 7, true));
+    whitePieces.add(new Rook(7, 7, true));
 
     whitePieces.add(new Pawn(0, 6, true));
     whitePieces.add(new Pawn(1, 6, true));
@@ -114,26 +114,25 @@ class Board {
     }
     return boards;
   }
-  void setScore(){
-  score =0;
-  for (int i = 0; i < whitePieces.size(); i++) {
+  void setScore() {
+    score =0;
+    for (int i = 0; i < whitePieces.size(); i++) {
       if (!whitePieces.get(i).taken) {
         score -= whitePieces.get(i).value;
       } else {
         //print("something");
       }
     }
-  for (int i = 0; i < blackPieces.size(); i++) {
+    for (int i = 0; i < blackPieces.size(); i++) {
       if (!blackPieces.get(i).taken) {
         score +=blackPieces.get(i).value;
       } else {
         //print("something");
       }
     }
-    
   }
-  
-  void move(PVector from,PVector  to) {
+
+  void move(PVector from, PVector  to) {
     Piece pieceToMove = getPieceAt(from.x, from.y);
     if (pieceToMove == null) {
       //print("shit");
@@ -143,40 +142,38 @@ class Board {
     pieceToMove.move(int(to.x), int(to.y), this);
     // }
   }
-  Board clone(){
-   Board clone = new Board();
-   for (int i=0;i<whitePieces.size();i++){
-     clone.whitePieces.remove(i);
-     clone.whitePieces.add(whitePieces.get(i).clone());
-   }
-   for (int i=0;i<blackPieces.size();i++){
-     clone.blackPieces.remove(i);
-     clone.blackPieces.add(blackPieces.get(i).clone());
-   }
-   
-   return clone;
+  Board clone() {
+    Board clone = new Board();
+    for (int i=0; i<whitePieces.size(); i++) {
+      clone.whitePieces.remove(i);
+      clone.whitePieces.add(whitePieces.get(i).clone());
+    }
+    for (int i=0; i<blackPieces.size(); i++) {
+      clone.blackPieces.remove(i);
+      clone.blackPieces.add(blackPieces.get(i).clone());
+    }
+
+    return clone;
   }
-  boolean isDone(){
-  return whitePieces.get(0).taken || blackPieces.get(0).taken; 
+  boolean isDone() {
+    return whitePieces.get(0).taken || blackPieces.get(0).taken;
   }
-  boolean isDead(){
-    if(whiteAI && whitesMove){
+  boolean isDead() {
+    if (whiteAI && whitesMove) {
       return whitePieces.get(0).taken;
-     }
-    if(blackAI && !whitesMove){
+    }
+    if (blackAI && !whitesMove) {
       return blackPieces.get(0).taken;
     }
     return false;
   }
-  boolean hasWon(){
-    if(whiteAI && whitesMove){
+  boolean hasWon() {
+    if (whiteAI && whitesMove) {
       return blackPieces.get(0).taken;
-     }
-    if(blackAI && !whitesMove){
+    }
+    if (blackAI && !whitesMove) {
       return whitePieces.get(0).taken;
     }
     return false;
   }
-  
-  
 }
