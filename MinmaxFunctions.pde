@@ -1,4 +1,5 @@
 int maxDepth =3;
+
 float minFun(Board board , int depth){
   if(depth>=maxDepth){
     board.setScore();
@@ -19,6 +20,7 @@ float minFun(Board board , int depth){
   }
   return lowestScore;
 }
+
 float maxFun(Board board , int depth){
   if(depth>=maxDepth){
     board.setScore();
@@ -38,7 +40,7 @@ float maxFun(Board board , int depth){
     }
   }
   if(depth ==0){
-  //return topBoard;
+  return 0;
   }
   return topScore;
 }
@@ -162,7 +164,7 @@ float minFunAB(Board board,float alpha,float beta,float depth) {
     ////print("eituku kaj kore");
     //return boards[lowestBoardNo];
   }
-  ////print("ohNo");
+  
   ////print(lowestScore);
   return lowestScore;
 }
@@ -171,26 +173,26 @@ float minFunAB(Board board,float alpha,float beta,float depth) {
 Board mainminFunAB(Board board,float alpha,float beta,int depth) {
   if (depth >= maxDepth) {
     board.setScore();
-    //return board.score;
+   return null;
   }
 
 
   if (board.isDead()) {
     if (whiteAI && whitesMove) {
-      //return 200;
+      return null;
     }
     if (blackAI && !whitesMove) {
-      //return -200;
+      return null;
     }
   }
 
   if (board.hasWon()) {
 
     if (whiteAI && whitesMove) {
-      //return -200;
+      return null;
     }
     if (blackAI && !whitesMove) {
-      //return 200;
+      return null;
     }
   }
 
@@ -208,7 +210,7 @@ Board mainminFunAB(Board board,float alpha,float beta,int depth) {
       lowestScore = score;
     } else {
       if (depth == 0 && score == lowestScore) {
-        //print("same as so i do what i want", i);
+        
         if (random(1) < 0.3) {
           lowestBoardNo = i;
         }
@@ -236,24 +238,26 @@ Board mainminFunAB(Board board,float alpha,float beta,int depth) {
 Board  mainmaxFunAB(Board board, float alpha,float  beta, float depth) {
   if (depth >= maxDepth) {
     board.setScore();
-    //return board.score;
+    return null;
   }
 
   if (board.isDead()) {
     if (whiteAI && whitesMove) {
-      //return 200;
+      return null;
     }
     if (blackAI && !whitesMove) {
-      //return -200;
+      return null;
     }
   }
 
   if (board.hasWon()) {
     if (whiteAI && whitesMove) {
       //return -200;
+      return null;
     }
     if (blackAI && !whitesMove) {
-      //return 200;
+      
+      return null;
     }
   }
 

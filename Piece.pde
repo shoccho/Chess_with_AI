@@ -20,7 +20,7 @@ class Piece {
   }
   void show() {
     imageMode(CENTER);
-    if(taken)return;
+    //if(this.taken)return;
     if (movingThisPiece) {
       image(pic, mouseX, mouseY, tileSize*1.3, tileSize*1.3);
     } else {
@@ -88,13 +88,13 @@ class Piece {
     while (tempPos.x != x || tempPos.y != y) {
 
       if (board.getPieceAt(tempPos.x, tempPos.y) != null) {
-        System.out.println("returning true");
+        //System.out.println("returning true");
         return true;
       }
       tempPos.x += stepDirectionX;
       tempPos.y += stepDirectionY;
     }
-    System.out.println("returning true");
+    //System.out.println("returning true");
     return false;
   }
   ArrayList<PVector> generateMoves(Board board) { 

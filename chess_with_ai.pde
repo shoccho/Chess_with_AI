@@ -23,13 +23,18 @@ void setup() {
   }
   board = new Board();
 }
-
+boolean ai=false;
 void draw() {
   background(100);
   showGrid();
   board.show();
+  if(ai)
+  runAi();
 }
-
+void keyPressed(){
+  if(key=='a')
+  ai=true;
+}
 void showGrid() {
   for (int i = 0; i < 8; i++) {
     for (int j = 0; j < 8; j++) {
@@ -77,9 +82,8 @@ void runAi(){
     if (blackAI) {
       if (!whitesMove) {
         if (moveCounter < 0) {
-          board = maxFunAB(board, -400, 400, 0);
-          // test = maxFun(test, 0);
-          //print(test);
+          board = mainmaxFunAB(board, -400, 400, 0);
+
           whitesMove = true;
           moveCounter = 10;
         } else {
@@ -90,11 +94,8 @@ void runAi(){
     if (whiteAI) {
       if (whitesMove) {
         if (moveCounter < 0) {
-          board = minFunAB(board, -400, 400, 0);
-          // test = minFun(test, 0);
-
-          //print("test", test);
-
+          board = mainminFunAB(board, -400, 400, 0);
+    
           whitesMove = false;
           moveCounter = 10;
         } else {

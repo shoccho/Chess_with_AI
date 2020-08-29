@@ -94,7 +94,7 @@ class Board {
     ArrayList<Board> boards = new ArrayList<Board>();
     for (int i = 0; i < whitePieces.size(); i++) {
       if (!whitePieces.get(i).taken) {
-        ArrayList<Board> tempArr = this.whitePieces.get(i).generateNewBoards(this);
+        ArrayList<Board> tempArr = whitePieces.get(i).generateNewBoards(this);
         for (int j = 0; j < tempArr.size(); j++) {
           boards.add(tempArr.get(j));
         }
@@ -135,7 +135,7 @@ class Board {
   void move(PVector from, PVector  to) {
     Piece pieceToMove = getPieceAt(from.x, from.y);
     if (pieceToMove == null) {
-      //print("shit");
+      
       return;
     }
     // if (pieceToMove.canMove(to.x, to.y, this)) {
